@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "890989669937",
+    "project_id": "tabladkotlin-c5566",
+    "storage_bucket": "tabladkotlin-c5566.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890989669937:android:6878065b00eb60f371ef10",
+        "android_client_info": {
+          "package_name": "com.example.tabladeanuncionskotlin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQuRy2bvb1bLGp453M_TszOm675MeaQjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

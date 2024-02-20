@@ -10,14 +10,16 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.tabladeanuncionskotlin.databinding.ActivityMainBinding
+import com.example.tabladeanuncionskotlin.dialoghelper.DialogConst
+import com.example.tabladeanuncionskotlin.dialoghelper.DialogHelper
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener
 
 
 class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
-    private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var drawerLayout:DrawerLayout
-    private lateinit var toolbar: Toolbar
+//    private lateinit var drawerLayout:DrawerLayout
+  //  private lateinit var toolbar: Toolbar
     private lateinit var binding: ActivityMainBinding
+    private val dialogHelper = DialogHelper(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +31,11 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
     }
 
     private fun init() {
-        drawerLayout = findViewById(R.id.drawerLayout)
-        toolbar = findViewById(R.id.toolbar)
-        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar , R.string.open, R.string.close)
-        drawerLayout.addDrawerListener(toggle)
+        //drawerLayout = findViewById(R.id.drawerLayout)
+        //toolbar = findViewById(R.id.toolbar)
+        val toggle = ActionBarDrawerToggle(
+            this, binding.drawerLayout, binding.mainContent.toolbar , R.string.open, R.string.close)
+        binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         binding.navView.setNavigationItemSelectedListener(this)
 
@@ -50,7 +53,7 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
                 Toast.makeText(this, "Pressed id_pc", Toast.LENGTH_LONG).show()
             }
             R.id.id_sign_up -> {
-                Toast.makeText(this, "Pressed id_sign_up", Toast.LENGTH_LONG).show()
+                dialogHelper.createSignDialog(DialogConst.SIGN_UP_STATE)
             }
             R.id.id_sign_in -> {
                 Toast.makeText(this, "Pressed id_sign_in", Toast.LENGTH_LONG).show()
@@ -59,7 +62,7 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
                 Toast.makeText(this, "Pressed id_sign_out", Toast.LENGTH_LONG).show()
             }
         }
-        drawerLayout.closeDrawer(GravityCompat.START)
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
        return true
     }
 }

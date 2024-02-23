@@ -13,6 +13,7 @@ import com.example.tabladeanuncionskotlin.databinding.ActivityMainBinding
 import com.example.tabladeanuncionskotlin.dialoghelper.DialogConst
 import com.example.tabladeanuncionskotlin.dialoghelper.DialogHelper
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
   //  private lateinit var toolbar: Toolbar
     private lateinit var binding: ActivityMainBinding
     private val dialogHelper = DialogHelper(this)
+    val mAuth = FirebaseAuth.getInstance()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +58,7 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
                 dialogHelper.createSignDialog(DialogConst.SIGN_UP_STATE)
             }
             R.id.id_sign_in -> {
-                Toast.makeText(this, "Pressed id_sign_in", Toast.LENGTH_LONG).show()
+                dialogHelper.createSignDialog(DialogConst.SIGN_IN_STATE)
             }
             R.id.id_sign_out -> {
                 Toast.makeText(this, "Pressed id_sign_out", Toast.LENGTH_LONG).show()

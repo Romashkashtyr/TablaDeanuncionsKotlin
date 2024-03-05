@@ -1,12 +1,23 @@
 package com.example.tabladeanuncionskotlin.accounthelper
 
+import android.content.Intent
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.tabladeanuncionskotlin.MainActivity
 import com.example.tabladeanuncionskotlin.R
+import com.example.tabladeanuncionskotlin.dialoghelper.DialogHelper
+import com.example.tabladeanuncionskotlin.dialoghelper.GoogleAccConst
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthCredential
+import com.google.firebase.auth.GoogleAuthProvider
+import kotlin.math.sign
 
 class AccountHelper(act: MainActivity) {
     private val act = act
+    private lateinit var signInClient: GoogleSignInClient
     fun signUpWithEmail(email: String, password: String){
         if(email.isNotEmpty() && password.isNotEmpty()){
             act.mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {task ->
@@ -36,6 +47,30 @@ class AccountHelper(act: MainActivity) {
             }
 
         }
+    }
+
+    private fun getSignInClient(): GoogleSignInClient{
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(act.getString(R.string.default_web_client_id)).build()
+        return GoogleSignIn.getClient(act,gso)
+    }
+
+    fun signInWithGoogle(){
+        signInClient = getSignInClient()
+        val intent = signInClient.signInIntent
+        act.startActivityForResult(intent, GoogleAccConst.GOOGLE_SIGN_IN_REQUEST_CODE)
+    }
+
+    fun signInFirebaseWithGoogle(token: String){
+        val credential = GoogleAuthProvider.getCredential(token, null)
+        act.mAuth.signInWithCredential(credential).addOnCompleteListener {task ->
+            if(task.isSuccessful){
+                Toast.makeText(act, "Sign In Done", Toast.LENGTH_LONG).show()
+            }
+
+
+        }
+
     }
 
     private fun sendEmailVerification(user: FirebaseUser){

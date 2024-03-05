@@ -12,7 +12,20 @@
           "package_name": "com.example.tabladeanuncionskotlin"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "890989669937-7cga6ampbqkl1hvoa16magvpsaa2bq4i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tabladeanuncionskotlin",
+            "certificate_hash": "f273305e7b0efe021735c1d2ea3352ff703646bb"
+          }
+        },
+        {
+          "client_id": "890989669937-dnmj94ck3anq7159h2pqke591g3pligi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDQuRy2bvb1bLGp453M_TszOm675MeaQjQ"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890989669937-dnmj94ck3anq7159h2pqke591g3pligi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

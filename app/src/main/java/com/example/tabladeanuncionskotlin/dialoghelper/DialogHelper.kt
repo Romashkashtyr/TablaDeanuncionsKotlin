@@ -32,6 +32,7 @@ class DialogHelper(act: MainActivity) {
 
         rootDialogElement.btGooglesignIn.setOnClickListener {
             accHelper.signInWithGoogle()
+            dialog.dismiss()
         }
 
         dialog.show() // показали- запустили билдер

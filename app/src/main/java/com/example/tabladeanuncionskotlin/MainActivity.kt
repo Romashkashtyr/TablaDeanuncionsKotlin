@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
@@ -12,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.tabladeanuncionskotlin.act.EditAdsAct
 import com.example.tabladeanuncionskotlin.databinding.ActivityMainBinding
 import com.example.tabladeanuncionskotlin.dialoghelper.DialogConst
 import com.example.tabladeanuncionskotlin.dialoghelper.DialogHelper
@@ -40,6 +42,19 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
         init()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.id_new_ads){
+            val i = Intent(this, EditAdsAct::class.java)
+            startActivity(i)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == GoogleAccConst.GOOGLE_SIGN_IN_REQUEST_CODE){
 //            Log.d("MyLog", "Sign in result")
@@ -49,7 +64,6 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
                 if(account != null){
                     dialogHelper.accHelper.signInFirebaseWithGoogle(account.idToken!!)
                 }
-
             } catch (e: ApiException) {
                 Log.d("MyLog", "Api error ${e.message}")
 
@@ -64,6 +78,7 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
     }
 
     private fun init() {
+        setSupportActionBar(binding.mainContent.toolbar)
         //drawerLayout = findViewById(R.id.drawerLayout)
         //toolbar = findViewById(R.id.toolbar)
         val toggle = ActionBarDrawerToggle(
@@ -95,6 +110,7 @@ class MainActivity : AppCompatActivity(), OnNavigationItemSelectedListener {
             R.id.id_sign_out -> {
                 uiUpdate(null)
                 mAuth.signOut()
+                dialogHelper.accHelper.signOutG()
             }
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)

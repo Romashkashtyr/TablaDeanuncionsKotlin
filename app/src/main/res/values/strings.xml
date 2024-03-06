@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TablaDeanuncionsKotlin</string>
-<!--    <string name="default_web_client_id">890989669937-dnmj94ck3anq7159h2pqke591g3pligi.apps.googleusercontent.com</string>-->
+    <!--    <string name="default_web_client_id">890989669937-dnmj94ck3anq7159h2pqke591g3pligi.apps.googleusercontent.com</string>-->
     <!-- Menu Drawer Strings-->
     <string name="ad_cat1">Объявления</string>
     <string name="ad_my_ads">Мои объявления</string>
@@ -36,4 +36,7 @@
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDQuRy2bvb1bLGp453M_TszOm675MeaQjQ</string>
     <string name="google_storage_bucket" translatable="false">tabladkotlin-c5566.appspot.com</string>
     <string name="project_id" translatable="false">tabladkotlin-c5566</string>
+    <!-- Sign Dialog-->
+    <string name="link_done">Email успешно подключен к Google аккаунту</string>
+    <string name="enter_to_g">У Вас уже есть аккаунт с этим Email адресом. Войдите по нему</string>
 </resources>
